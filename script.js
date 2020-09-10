@@ -19,14 +19,6 @@ $(document).ready(function(){
     },1000);
 }); 
 
-
-let timeBlockContainer = $(".container"); 
-let todaysDateEl= $("#currentDay"); 
-
-
-todaysDateEl.text(moment().format("dddd, MMMM Do")); 
-
-
 let timesArr= ["7AM","8AM", "9AM", "10AM", "11AM", "12PM", "1PM", "2PM", "3PM"]; 
 
 for (let i=1; i<timesArr.length; i++){
@@ -115,24 +107,4 @@ $(".time-block").delegate("button", "click", function(){
 
     changeEvent(time, index, location, buttonEl, eventInput,isPopulated); 
     populateSavedEvents(); 
-}); 
-    
-  
-let timeOfDay= moment().format("hA"); 
-
-let allTimeBlockEl= $(".time-block"); 
-
- for (let i=0; i<allTimeBlockEl.length; i++){
-    let timeBlock= $(allTimeBlockEl[i]); 
-    let timeBlockId= timeBlock.attr("id");
-    let timeBlockTextarea=timeBlock.children(".row").children("textarea");  
-    if (timeBlockId === timeOfDay){
-        timeBlockTextarea.addClass("present"); 
-    } else if (moment(timeBlockId, "hA").isBefore()) {
-        timeBlockTextarea.addClass("past"); 
-    } else if (moment(timeBlockId, "hA").isAfter()) {
-        timeBlockTextarea.addClass("future"); 
-    }
-}
-   
 }); 
